@@ -196,19 +196,7 @@ const Register = () => {
             value={formData.confirmPassword || ""}
             onChange={(e) => handleChange(e)}
           />
-{/* {
-  isLoading?  ( <Box sx={{ display: 'flex' }}>
-  <CircularProgress />
-</Box>) :   (<Button
-            onClick={async () => {
-              await register(formData);
-            }}
-            className="button"
-            variant="contained"
-          >
-            Register Now
-          </Button>)
-} */}
+
 
 {isLoading?(
               <Box display="flex" justifyContentalignItems="center" justifyContent="center">
