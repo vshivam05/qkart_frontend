@@ -8,11 +8,11 @@ import { config } from "../App";
 import Footer from "./Footer";
 import Header from "./Header";
 import "./Register.css";
+// import { useHistory, Link } from "react-router-dom";
 
 const Register = () => {
   const { enqueueSnackbar } = useSnackbar();
 
-  // TODO: CRIO_TASK_MODULE_REGISTER - Implement the register function
   /**
    * Definition for register handler
    * - Function to be called when the user clicks on the register button or submits the register form
@@ -35,7 +35,7 @@ const Register = () => {
    *      "message": "Username is already taken"
    * }
    */
-  // let history = useHistory();
+  let history = useHistory();
   const [formData, setformData] = useState({});
   const[isLoading,setISloading]=useState(false);
 
@@ -78,7 +78,7 @@ const Register = () => {
         enqueueSnackbar("Registered successfully", { variant: "success" });
         //  should have used  history.push(()=>("/login")); , doing jsut for test cases
       }
-      // history.push("/login");
+      history.push("/login");
     } catch (error) {
       console.log(error); //observe this to find all the fields
       if (error.response && error.response.status === 400) {
