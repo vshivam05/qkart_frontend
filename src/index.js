@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { SnackbarProvider } from "notistack";
-import { BrowserRouter } from "react-router-dom";
+// import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "@mui/system";
 import theme from "./theme";
 
