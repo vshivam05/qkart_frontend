@@ -39,7 +39,8 @@ const Products = () => {
   const [filteredProducts, setFilteredProducts]= useState([]);
 
     //timer for debounce search
-    const [debounceTime, setDebounceTime]= useState(0);
+    // const [debounceTime, setDebounceTime]= useState('');
+    const [timerId, updateTimerId] = useState('');
 
 
 
@@ -164,19 +165,20 @@ const Products = () => {
   const debounceSearch = (event, debounceTimeId) => {
  //stored the entered keyword by user
 
- var text=event.target.value;
- // console.log("text :");
- // console.log(text);
+      var text=event.target.value;
+      clearTimeout(timerId);
+      // console.log("text :");
+      // console.log(text);
 
- //debounce logic
- if(debounceTimeId){
-   clearTimeout(debounceTimeId);
+      //debounce logic
+      // if(debounceTimeId){
+      //   clearTimeout(debounceTimeId);
 
- }
+      // }
 
- const newTimeOut= setTimeout(()=>{performSearch(text)},500);
+      const newTimeOut= setTimeout(()=>{performSearch(text)},debounceTimeId);
 
- setDebounceTime(newTimeOut);
+      updateTimerId(newTimeOut);
 
   };
 
@@ -205,7 +207,7 @@ const Products = () => {
         }}
         placeholder="Search for items/categories"
         name="search"
-        onChange={(e)=> debounceSearch(e, debounceTime)}
+        onChange={(e)=> debounceSearch(e, 500)}
         
       />
       </Header>
@@ -224,7 +226,7 @@ const Products = () => {
         }}
         placeholder="Search for items/categories"
         name="search"
-        onChange={(e)=> debounceSearch(e, debounceTime)}
+        onChange={(e)=> debounceSearch(e, 500)}
       />
       <Grid container>
         <Grid item className="product-grid">

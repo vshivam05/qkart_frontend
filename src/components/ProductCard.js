@@ -5,6 +5,7 @@ import {
   CardContent,
   Typography,
   Button,
+  CardActionArea,
   Rating,
   CardActions,
 } from "@mui/material";
@@ -26,36 +27,27 @@ import { AddShoppingCartOutlined } from "@mui/icons-material";
 const ProductCard = ({ product, handleAddToCart }) => {
   // console.log(products.cost);
   return (
-    <Card className="card">
-      <CardMedia
-        image={product.image}
-        title="green iguana"
-        component="img"
-        alt={product.name}
-      />
-
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {product.name}
-        </Typography>
-        <Typography fontWeight="700" paddingY="0.5rem">
-          {" "}
-          ${product.cost}
-        </Typography>
-        <Rating
-          name="half-rating"
-          defaultValue={product.rating}
-          precision={0.5}
+    <Card>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          image={product.image}
+          alt="green iguana"
         />
-      </CardContent>
+        <CardContent>
+          <Typography gutterBottom variant="body2" component="div">
+            {product.name}
+          </Typography>
+          <Typography variant="body2" color="textPrimary" sx={{ fontWeight: "bold" }} mb={1}>
+            ${product.cost}
+          </Typography>
+          <Rating name="read-only" value={product.rating} readOnly  />
+        </CardContent>
+      </CardActionArea>
       <CardActions>
-        <Button
-          className="card-button "
-          fullWidth
-          variant="contained"
-          startIcon={<AddShoppingCartOutlined />}
-          onClick={handleAddToCart}
-        ></Button>
+        <Button className="button" variant="contained" style={{width:"100%"}}>
+          ADD TO CART
+        </Button>
       </CardActions>
     </Card>
   );
