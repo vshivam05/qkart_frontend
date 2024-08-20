@@ -18,41 +18,36 @@ import "./Checkout.css";
 import Footer from "./Footer";
 import Header from "./Header";
 
-// Definition of Data Structures used
-/**
- * @typedef {Object} Product - Data on product available to buy
- *
- * @property {string} name - The name or title of the product
- * @property {string} category - The category that the product belongs to
- * @property {number} cost - The price to buy the product
- * @property {number} rating - The aggregate rating of the product (integer out of five)
- * @property {string} image - Contains URL for the product image
- * @property {string} _id - Unique ID for the product
- */
-
-/**
- * @typedef {Object} CartItem -  - Data on product added to cart
- *
- * @property {string} name - The name or title of the product in cart
- * @property {string} qty - The quantity of product added to cart
- * @property {string} category - The category that the product belongs to
- * @property {number} cost - The price to buy the product
- * @property {number} rating - The aggregate rating of the product (integer out of five)
- * @property {string} image - Contains URL for the product image
- * @property {string} productId - Unique ID for the product
- */
-
-
-
 const Checkout = () => {
+  const [items, setItems] = useState([]);
+  const [products, setProducts] = useState([]);
+  const token = localStorage.getItem("token");
+  const { enqueueSnackbar } = useSnackbar();
 
+  useEffect(() => {
+    // Fetch cart items and product details
+    const fetchCartAndProducts = async () => {
+      try {
+        // Fetch products
+        const productResponse = await axios.get(`${config.endpoint}/products`);
+        setProducts(productResponse.data);
 
+        // Fetch cart
+        const cartResponse = await axios.get(`${config.endpoint}/cart`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
+        const cartItems = generateCartItemsFrom(cartResponse.data, productResponse.data);
+        setItems(cartItems);
+      } catch (error) {
+        enqueueSnackbar("Failed to load cart or products data", { variant: "error" });
+      }
+    };
 
-
-
-
-
+    fetchCartAndProducts();
+  }, [token, enqueueSnackbar]);
 
   return (
     <>
@@ -70,8 +65,8 @@ const Checkout = () => {
             </Typography>
             <Divider />
             <Box>
+              {/* Add your address management UI here */}
             </Box>
-
 
             <Typography color="#3C3C3C" variant="h4" my="1rem">
               Payment
