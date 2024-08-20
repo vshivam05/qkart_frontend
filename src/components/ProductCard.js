@@ -45,7 +45,7 @@ const ProductCard = ({ product, handleAddToCart }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button className="button" variant="contained" style={{width:"100%"}}>
+        <Button className="button" variant="contained" style={{width:"100%"}} onClick={handleAddToCart}>
           ADD TO CART
         </Button>
       </CardActions>
