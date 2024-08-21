@@ -1,5 +1,6 @@
 ME Recap
 Glance through the QKart architecture once again
+![image](https://github.com/user-attachments/assets/45a76a75-5255-4c78-97e0-4423356c249f)
 
 ![image](https://github.com/user-attachments/assets/5aa5f0b6-69db-455e-bb24-0d26b7f1ce8e)
 
